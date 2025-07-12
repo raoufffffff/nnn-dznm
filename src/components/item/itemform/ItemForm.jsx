@@ -19,7 +19,6 @@ const ItemForm = ({ item }) => {
     const [Livrition, setLivrition] = useState({ beru: 0, home: 0 });
 
     const [user, setUser] = useState({
-        userId: id,
         name: "",
         phone: "",
         state: "",
@@ -99,7 +98,7 @@ const ItemForm = ({ item }) => {
 
         setIsSubmitting(true);
         try {
-            const response = await axios.post(`https://true-fit-dz-api.vercel.app/order`, user);
+            const response = await axios.post(`https://true-fit-dz-api.vercel.app/order`, {...user, userId: id});
             if (response.data.good) {
                 navigate("/thanks");
             } else {
